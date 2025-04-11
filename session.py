@@ -1,5 +1,3 @@
-import json
-
 class APISession:
     def __init__(self, client):
         self.client = client
@@ -30,7 +28,7 @@ class APISession:
 
             # Assertion: Check that the status code is 200 (OK)
             assert response.status_code == 200, f"Failed to update user: {response.status_code}"
-            
+
             print(f"User updated with ID: {self.user_id}")
 
             return response

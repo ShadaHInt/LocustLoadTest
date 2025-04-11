@@ -1,6 +1,6 @@
-from locust import HttpUser, task, between
+from locust import HttpUser, task, between,tag
 from session import APISession  # Import the session class
-
+from tags import Tags  # Import the Tags class
 class CRUDUser(HttpUser):
     wait_time = between(1, 3)
 
@@ -8,6 +8,7 @@ class CRUDUser(HttpUser):
      #  Initialize API session when the user starts.
         self.api = APISession(self.client)
 
+    @tag(Tags.Create)
     @task(5)
     def create_user(self):
         self.api.create_user()
@@ -22,4 +23,4 @@ class CRUDUser(HttpUser):
 
     @task(1)
     def delete_user(self):
-        self.api.delete_user()
+        self.api.delete_user()   
